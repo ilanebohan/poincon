@@ -1,0 +1,168 @@
+# Manufacturer codes stamped on the receiver of the Mauser Karabiner 98k.
+#
+# Every entry below is derived from the manufacturer labels of the French RGA
+# (export of 2026-09-11). Nothing here has been checked against a printed
+# reference yet: `period` stays empty until someone documents it with a source.
+# `relatedRgaManufacturers` is an editorial grouping of labels that name the
+# same maker; it is there to warn about near-identical RGA records.
+#
+# Fields
+#   code                     what is stamped on the receiver, lower case
+#   manufacturer / location  readable name of the maker and its site
+#   country                  ISO 3166-1 alpha-2 code of the maker's country today
+#   rgaManufacturers         exact RGA "fabricant" labels that carry this code
+#   relatedRgaManufacturers  RGA labels for the same maker without the code
+#   period                   years the code was in use, e.g. "1941-1945" (optional)
+#   sources                  ids declared in the `sources` section
+
+model:
+  id: mauser-k98k
+  name: Mauser Karabiner 98k
+  rgaBrand: MAUSER
+  rgaModel: KARABINER 98 K
+  defaultCaliber: 8 X 57 IS
+  markingLocation: Top of the receiver ring, above the year of manufacture.
+
+sources:
+  - id: rga-2026-09-11
+    title: Référentiel Général des Armes, export of 2026-09-11
+    publisher: Ministère de l'Intérieur (SCAE)
+    url: https://www.data.gouv.fr/datasets/referentiel-general-des-armes
+    license: Licence Ouverte 2.0
+
+codes:
+  - code: bnz
+    manufacturer: Steyr-Daimler-Puch
+    location: Steyr
+    country: AT
+    rgaManufacturers:
+      - WAFFENFABRIK STEYR DAIMLER PUCH (BNZ)
+    relatedRgaManufacturers:
+      - STEYR DAIMLER PUCH
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: svw
+    manufacturer: Mauser-Werke AG
+    location: Oberndorf am Neckar
+    country: DE
+    rgaManufacturers:
+      - SVW (MAUSER-WERKE AG, OBERNDORF A./N)
+    relatedRgaManufacturers:
+      - WAFFENFABRIK MAUSER WERKE AG, OBERNDORF
+      - WAFFENFABRIK MAUSER AG, OBERNDORF
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: "337"
+    manufacturer: Gustloff-Werke
+    location: Weimar
+    country: DE
+    rgaManufacturers:
+      - 337 (GUSTLOFF WERKE, WEIMAR)
+    relatedRgaManufacturers:
+      - GUSTLOFF WERKE WAFFENFABRIK
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: bcd/ar
+    manufacturer: Gustloff-Werke / Mauser
+    location:
+    country: DE
+    rgaManufacturers:
+      - BCD/AR (GUSTLOFF / MAUSER )
+    relatedRgaManufacturers:
+      - GUSTLOFF WERKE WAFFENFABRIK
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: ax
+    manufacturer: Feinmechanische Werke GmbH
+    location: Erfurt
+    country: DE
+    rgaManufacturers:
+      - AX ( FEINMECHANISCHE WERKE GMBH, ERFURT )
+    relatedRgaManufacturers: []
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: ayf
+    manufacturer: Waffenfabrik Erma
+    location:
+    country: DE
+    rgaManufacturers:
+      - WAFFENFABRIK ERMA (AYF)
+    relatedRgaManufacturers:
+      - ERFURTER MASCHINENFABRIK (ERMA)
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: cr43
+    manufacturer: Zander und Opitz
+    location:
+    country: DE
+    rgaManufacturers:
+      - CR43 (ZANDER U.OPITZ)
+    relatedRgaManufacturers: []
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: dot
+    manufacturer: Waffenwerke Brünn
+    location: Brno
+    country: CZ
+    rgaManufacturers:
+      - BRUNN WAFFENFABRIK (DOT)
+      - WAFFENFABRIK BRUNN (DOT)
+    relatedRgaManufacturers:
+      - SWP (WAFFENWERKE BRÜNN AG, BRNO)
+      - 945 (WAFFENWERKE BRÜNN AG, BRNO)
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: swp
+    manufacturer: Waffenwerke Brünn AG
+    location: Brno
+    country: CZ
+    rgaManufacturers:
+      - SWP (WAFFENWERKE BRÜNN AG, BRNO)
+    relatedRgaManufacturers:
+      - BRUNN WAFFENFABRIK (DOT)
+      - WAFFENFABRIK BRUNN (DOT)
+      - 945 (WAFFENWERKE BRÜNN AG, BRNO)
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: "945"
+    manufacturer: Waffenwerke Brünn AG
+    location: Brno
+    country: CZ
+    rgaManufacturers:
+      - 945 (WAFFENWERKE BRÜNN AG, BRNO)
+    relatedRgaManufacturers:
+      - BRUNN WAFFENFABRIK (DOT)
+      - WAFFENFABRIK BRUNN (DOT)
+      - SWP (WAFFENWERKE BRÜNN AG, BRNO)
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: dou
+    manufacturer: Waffenwerke Brünn
+    location: Považská Bystrica
+    country: SK
+    rgaManufacturers:
+      - WAFFENWERKE BRUNN POVASZKA BYSTRICA (DOU)
+    relatedRgaManufacturers:
+      - BRUNN-BYSTRICA (WAFFENWERKE)
+    period:
+    sources: [rga-2026-09-11]
+
+  - code: tgf
+    manufacturer: Tschechische Gewehrfabrik
+    location:
+    country: CZ
+    rgaManufacturers:
+      - TGF (TSCHECHISCHE GEWEHR FABRIK)
+    relatedRgaManufacturers: []
+    period:
+    sources: [rga-2026-09-11]

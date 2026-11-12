@@ -1,0 +1,123 @@
+<header class="masthead">
+  <p class="brand">Poinçon</p>
+  <h1>Read the marking, find the record</h1>
+  <p class="lede">
+    Type the manufacturer code stamped on a Mauser Karabiner 98k. You get the maker behind it and
+    the matching record in the French RGA.
+  </p>
+</header>
+
+<main>
+  <form class="search" (submit)="$event.preventDefault(); identify()">
+    <label for="code">Code on the receiver</label>
+    <div class="search-row">
+      <input
+        id="code"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="bnz"
+        [value]="code()"
+        (input)="typeCode($any($event.target).value)"
+        [attr.aria-invalid]="error() ? 'true' : null"
+        aria-describedby="code-error"
+      />
+      <button type="submit" [disabled]="loading()">Identify</button>
+    </div>
+    <p id="code-error" class="error" role="alert">{{ error() }}</p>
+
+    @if (knownCodes().length) {
+      <div class="chips" aria-label="Known codes">
+        @for (known of knownCodes(); track known.code) {
+          <button type="button" class="chip" (click)="pick(known.code)">{{ known.code }}</button>
+        }
+      </div>
+    }
+  </form>
+
+  @if (result(); as found) {
+    <section class="result" aria-live="polite">
+      <div class="maker">
+        <span class="stamp">{{ found.code.code }}</span>
+        <div>
+          <h2>{{ found.code.manufacturer }}</h2>
+          <p class="where">
+            @if (found.code.location) {
+              {{ found.code.location }},
+            }
+            {{ found.code.country }}
+          </p>
+        </div>
+      </div>
+
+      <label class="caliber">
+        Caliber
+        <select (change)="identify($any($event.target).value)">
+          @for (caliber of found.availableCalibers; track caliber) {
+            <option [value]="caliber" [selected]="caliber === found.caliber">{{ caliber }}</option>
+          }
+        </select>
+      </label>
+
+      @for (record of found.matches; track record.reference) {
+        <article class="record">
+          <div class="reference">
+            <span class="label">RGA record</span>
+            <strong>{{ record.reference }}</strong>
+          </div>
+          <dl>
+            <div>
+              <dt>Class</dt>
+              <dd>{{ record.frenchClass }}</dd>
+            </div>
+            <div>
+              <dt>Length</dt>
+              <dd>{{ record.overallLengthMm }} mm</dd>
+            </div>
+            <div>
+              <dt>Barrel</dt>
+              <dd>{{ record.barrelLengthMm }} mm</dd>
+            </div>
+            <div>
+              <dt>Magazine</dt>
+              <dd>{{ record.magazineCapacity }} rounds</dd>
+            </div>
+          </dl>
+          <p class="official">{{ record.manufacturer }} · {{ record.country }} · {{ record.action }}</p>
+        </article>
+      } @empty {
+        <p class="empty">The RGA lists no record for this code in {{ found.caliber }}.</p>
+      }
+
+      @if (found.similar.length) {
+        <div class="warning">
+          <strong>Near-identical records.</strong>
+          The RGA also lists this maker under other labels:
+          @for (record of found.similar; track record.reference; let last = $last) {
+            <span class="mono">{{ record.reference }}</span>
+            ({{ record.manufacturer }}, {{ record.overallLengthMm }} mm){{ last ? '.' : ',' }}
+          }
+        </div>
+      }
+
+      <dl class="context">
+        <div>
+          <dt>Where to look</dt>
+          <dd>{{ found.model.markingLocation }}</dd>
+        </div>
+        <div>
+          <dt>Period of use</dt>
+          <dd [class.todo]="!found.code.period">{{ found.code.period ?? 'Not documented yet' }}</dd>
+        </div>
+      </dl>
+
+      <p class="sources">
+        Sources:
+        @for (source of found.sources; track source.id; let last = $last) {
+          <a [href]="source.url" target="_blank" rel="noopener">{{ source.title }}</a>
+          ({{ source.license }}){{ last ? '' : ', ' }}
+        }
+      </p>
+    </section>
+  }
+</main>
